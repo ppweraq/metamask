@@ -1,0 +1,8 @@
+.btn-connect {
+    color: rgb(41, 245, 137);
+    border-color: rgb(41, 245, 137);
+}
+.btn-connect:hover {
+    color: rgb(36,36,37);
+    background-color: rgb(41, 245, 137);
+}

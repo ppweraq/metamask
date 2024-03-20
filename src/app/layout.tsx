@@ -1,7 +1,7 @@
-import { Roboto } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
 
-export const roboto = Roboto({ 
+export const spaceMono = Space_Mono({ 
   weight: ['400'],
   subsets: ["latin"] });
 
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={spaceMono.className}>{children}</body>
     </html>
   );
 }
