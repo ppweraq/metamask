@@ -1,9 +1,8 @@
-import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 const AnimatedTypingText: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <Typography>
+    <>
       {Array.from(text).map((char, index) => (
         <motion.span
           key={index}
@@ -14,7 +13,7 @@ const AnimatedTypingText: React.FC<{ text: string }> = ({ text }) => {
           {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
-    </Typography>
+    </>
   );
 };
 export default AnimatedTypingText;
