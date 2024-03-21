@@ -2,7 +2,7 @@
 
 import { Button } from "@mui/material";
 import "./Wallet.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import NetworkUtils from "./NetworkUtils";
 import AnimatedTypingText from "./AnimationTyping";
@@ -15,41 +15,45 @@ const Wallet: React.FC = () => {
   const [balance, setBalance] = useState<string>("");
   const [destinationAddress, setDestinationAddress] = useState<string>("");
 
-  const connectToMetamask = async () => {
-    if (
-      typeof window !== "undefined" &&
-      typeof window.ethereum !== "undefined"
-    ) {
-      try {
-        const ethereum = window.ethereum;
-        await ethereum.request({ method: "eth_requestAccounts" });
 
-        const web3Instance = new Web3(ethereum);
-        console.log(web3Instance);
-        setWeb3(web3Instance);
 
-        const accounts = await web3Instance.eth.getAccounts();
-        console.log(accounts);
-        setAddress(accounts[0]);
-
-        
-
-        const networkId = Number(await web3Instance.eth.net.getId());
-        const networkName = NetworkUtils(networkId);
-        setNetwork(networkName);
-
-        const balanceHandler = await web3Instance.eth.getBalance(address);
-        const balanceNet = parseFloat(
-          web3Instance.utils.fromWei(balanceHandler, "ether")
-        );
-        setBalance(balanceNet.toString());
-      } catch (error) {
-        console.error("Ошибка при подключении MetaMask", error);
+    const connectToMetamask = async () => {
+      const ethereum = (window as any).ethereum;
+  
+      if (
+        typeof window !== "undefined" &&
+        typeof ethereum !== "undefined"
+      ) {
+        try {
+          await ethereum.request({ method: "eth_requestAccounts" });
+  
+          const web3Instance = new Web3(ethereum);
+          // console.log(web3Instance);
+          setWeb3(web3Instance);
+  
+          const accounts = await web3Instance.eth.getAccounts();
+          // console.log(accounts);
+          setAddress(accounts[0]);
+  
+          
+  
+          const networkId = Number(await web3Instance.eth.net.getId());
+          const networkName = NetworkUtils(networkId);
+          setNetwork(networkName);
+  
+          const balanceHandler = await web3Instance.eth.getBalance(address);
+          const balanceNet = parseFloat(web3Instance.utils.fromWei(balanceHandler, "ether"));
+          setBalance(balanceNet.toString());
+  
+        } catch (error) {
+          console.error("Ошибка при подключении MetaMask", error);
+        }
+      } else {
+        alert("Установите расширение Metamask");
       }
-    } else {
-      alert("Установите расширение Metamask");
-    }
-  };
+    };
+
+
 
   const handleDestinationChange = (
     event: React.ChangeEvent<HTMLInputElement>
