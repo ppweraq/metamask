@@ -20,15 +20,6 @@ body {
   background: rgb(36,36,37);
   color: rgb(41,245,137);
 }
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
 
 @layer utilities {
   .text-balance {

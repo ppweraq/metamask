@@ -11,7 +11,7 @@ const AnimatedTypingText: React.FC<{ text: string }> = ({ text }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: index * 0.05 }}
         >
-          {char === " " ? "\u00A0" : char} {/* Замените пробел на неразрывный пробел */}
+          {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
     </Typography>
