@@ -9,6 +9,8 @@ const NetworkUtils = (networkId: number): string => {
             return "Binance Smart Chain Mainnet";
         case 97:
             return "Binance Smart Chain Testnet (BSC Testnet)";
+        case 11155111:
+            return "SepoliaETH";
         default:
             return "Unknown Network";
     }
